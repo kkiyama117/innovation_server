@@ -1,0 +1,17 @@
+const database = require('mysql2');
+
+/**
+ * MySQLに接続してSQLを実行する
+ * @param sql 実行したいSQL
+ * @param values SQLに指定するパラメータ
+ * @param callback SQL実行後、処理するイベント
+ */
+// 接続先情報は適当に変更すること
+db_pool = database.createPool({
+    host: 'localhost',
+    user: 'kiyama',
+    password: '19980117',
+    database: 'innovation',
+});
+
+exports.connection = db_pool;
