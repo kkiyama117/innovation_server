@@ -26,15 +26,18 @@ exports.get = function (req, res) {
     });
 };
 
-exports.post = function (req) {
+exports.post = function (req, res) {
     // データをDBに追加
     let connection = db.connection;
     connection.execute('insert into tax_rate (start_date, rate) values(?, ?)',
-        [(new Date(req.body.start_data)), req.body.rate]);
+        [(new Date(req.body.start_date)), req.body.rate], function (error, results, fields) {
+            res.json(results);
+        });
 };
 
-exports.delete = function (req) {
-    // データをDBに追加
+exports.delete = function (req, res) {
     let connection = db.connection;
-    connection.execute('delete from tax_rate where id = ?', [req.params.id]);
+    connection.execute('delete from tax_rate where id = ?', [req.params.id], function (error, results, fields) {
+        res.json(results);
+    });
 };
