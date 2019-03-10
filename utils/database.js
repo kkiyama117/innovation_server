@@ -1,4 +1,6 @@
 const database = require('mysql2');
+const dotenv = require('dotenv');
+dotenv.config();
 
 /**
  * MySQLに接続してSQLを実行する
@@ -8,9 +10,9 @@ const database = require('mysql2');
  */
 // 接続先情報は適当に変更すること
 db_pool = database.createPool({
-    host: 'localhost',
-    user: 'kiyama',
-    password: '19980117',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
     database: 'innovation',
 });
 
