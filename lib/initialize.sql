@@ -1,4 +1,3 @@
-create database innovation;
 use innovation;
 create table tax_rate (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "ID",
