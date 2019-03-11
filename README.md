@@ -15,12 +15,12 @@
 
 ## Requirement
 - `npm`(or `yarn`)
+- [`pm2`](http://pm2.keymetrics.io/docs/usage/quick-start/) - Manager of js prosess
 - npm packages written in `package.json`
   - [`mysql2`](https://github.com/sidorares/node-mysql2) - mysql for javascript
   - [`express`](https://expressjs.com/ja/) - web server for javascript
   - [`body-parser`](https://github.com/expressjs/body-parser) - middleware to parse body and views
   - [`dotenv`](https://github.com/motdotla/dotenv) - environment file
-  - [`pm2`](http://pm2.keymetrics.io/docs/usage/quick-start/) -Manager of js prosess
 - MYSQL Database
 
 ## Install and deploy
@@ -45,7 +45,8 @@ Debian系, CentOS 等によりconfigの設定の仕方が違うので合わせ�
 ### deploy node programs
 clone したディレクトリで以下のコマンドを実行して下さい.
 pm2 に関しては[公式Doc](http://pm2.keymetrics.io/docs/usage/startup/)等も参照して下さい.
-1. `$ npm install yarn -g`
+1. `$ npm install yarn pm2 -g`
+2. `$ yarn global add pm2`
 2. `$ yarn`
 3. `$ pm2 start app.json`
 4. `$ pm2 startup (環境名)`
