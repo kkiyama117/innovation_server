@@ -50,7 +50,9 @@ pm2 に関しては[公式Doc](http://pm2.keymetrics.io/docs/usage/startup/)等�
 2. `$ yarn`
 3. `$ pm2 start app.json`
 4. `$ pm2 startup (環境名)`
+ -> コマンドラインの出力に従って作業
 5. `$ pm2 save`
+6. サーバーのrestart
 
 ## Use
 - OS -> Raspbian GNU/Linux 9.8 
