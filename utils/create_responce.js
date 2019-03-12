@@ -17,13 +17,20 @@ function parse_date(rates) {
 }
 
 function parse_results(results) {
-    return fix_float(parse_date(results))
+    if (Array.isArray(results)) {
+        return fix_float(parse_date(results))
+    }else {
+        return results
+    }
 }
 
 // get_all
 exports.get_all = function (req, res) {
     let connection = db.connection;
     connection.execute('select * from tax_rate', [], function (error, results, fields) {
+        if (results === []) {
+
+        }
         res.json(parse_results(results));
     });
 };
