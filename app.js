@@ -4,6 +4,8 @@ let path = require('path');
 let bodyParser = require('body-parser');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let cors = require('cors');
+
 
 let ratesRouter = require('./routes/rates');
 
@@ -11,6 +13,9 @@ let app = express();
 
 // logger
 app.use(logger('dev'));
+
+// Allow CORS
+app.use( cors() );
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,18 +27,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // router
 app.use('/', ratesRouter);
-
-// header setting
-app.use(function (req, res, next) {
-  // Allow CORS
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
