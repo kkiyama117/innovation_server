@@ -27,6 +27,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // router
 app.use('/', ratesRouter);
 
+// header setting
+app.use(function (req, res, next) {
+  // Allow CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -38,14 +46,9 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // Allow CORS
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-  next();
 });
 
 module.exports = app;
