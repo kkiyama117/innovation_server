@@ -28,9 +28,6 @@ function parse_results(results) {
 exports.get_all = function (req, res) {
     let connection = db.connection;
     connection.execute('select * from tax_rate', [], function (error, results, fields) {
-        if (results === []) {
-
-        }
         res.json(parse_results(results));
     });
 };
