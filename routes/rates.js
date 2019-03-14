@@ -12,7 +12,7 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.post('/', function (req, res) {
-    if (req.body.start_date === "" || req.body.rate === "") {
+    if (req.body.start_date === "" || req.body.rate < 0) {
         res.status(400).send("please send correct value")
     } else {
         create_res.post(req, res);
