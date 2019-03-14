@@ -14,10 +14,9 @@
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
         <Location /api/>
+                Header add "Access-Control-Allow-Origin" "*"
                 ProxyPass http://localhost:3000/
                 ProxyPassReverse http://localhost:3000/
-                Order deny,allow
-                Deny from all
-                Allow from all
+                Require all granted
         </Location>
 </VirtualHost>
