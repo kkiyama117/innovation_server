@@ -47,7 +47,7 @@ exports.post = function (req, res) {
     let connection = db.connection;
     let date = new Date(req.body.start_date);
     let rate = req.body.rate;
-    if (date instanceof Date) {
+    if (date instanceof Date && date.toString() !== "Invalid Date") {
         connection.execute('insert into tax_rate (start_date, rate) values(?, ?)',
             [date, rate], function (error, results, fields) {
                 res.json(results);
