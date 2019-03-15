@@ -45,10 +45,16 @@ exports.get = function (req, res) {
 exports.post = function (req, res) {
     // データをDBに追加
     let connection = db.connection;
-    connection.execute('insert into tax_rate (start_date, rate) values(?, ?)',
-        [(new Date(req.body.start_date)), req.body.rate], function (error, results, fields) {
-            res.json(results);
-        });
+    let date = new Date(req.body.start_date);
+    let rate = req.body.rate;
+    if (date instanceof Date) {
+        connection.execute('insert into tax_rate (start_date, rate) values(?, ?)',
+            [date, rate], function (error, results, fields) {
+                res.json(results);
+            });
+    } else {
+        return "error"
+    }
 };
 
 exports.delete = function (req, res) {
