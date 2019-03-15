@@ -48,7 +48,7 @@ exports.post = function (req, res) {
     const first_date = new Date("1000-01-02");
     const last_date = new Date("9999-12-30");
     let date = new Date(req.body.start_date);
-    let rate = Math.round(req.body.rate);
+    let rate = Math.round(req.body.rate * 100) * 0.01;
     if (date instanceof Date && (date.toString() !== "Invalid Date") && (first_date < date < last_date)) {
         connection.execute('insert into tax_rate (start_date, rate) values(?, ?)',
             [date, rate], function (error, results, fields) {
